@@ -8,9 +8,7 @@
 
 package home_work_2.loops.task_3;
 
-import java.util.Scanner;
-
-public class Subtask_3 {
+public class Subtask_1 {
 
     // Метод для вычисления степени числа
     public double calculatePower(double base, int exponent) {

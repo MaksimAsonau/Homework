@@ -102,7 +102,7 @@ public class ArraysIteration {
         }
         System.out.println();
 
-        for (i = array.length - 1; i >= 0; i--){    // Используем цикл while
+        for (i = array.length - 1; i >= 0; i--){    // Используем цикл for
             System.out.print(array[i] + " ");
         }
         System.out.println();

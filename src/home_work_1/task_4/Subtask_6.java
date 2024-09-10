@@ -10,13 +10,12 @@ public class Subtask_6 {
 
         System.out.print("Input year: ");
         int year = in.nextInt();
-
-        if ((year % 4 != 0) || (year % 100 == 0) && (year % 400 != 0)) {
-            System.out.println("this year is a normal year");
-
-        } else {
-            System.out.println("this year is a leap year");
-        }
         in.close();
+
+        System.out.println("it's a " + (isLeapYear(year) ? "leap year" : "normal year"));
+
+    }
+    public static boolean isLeapYear (int x){
+        return !((x % 4 != 0) || (x % 100 == 0) && (x % 400 != 0));
     }
 }

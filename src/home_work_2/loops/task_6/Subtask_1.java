@@ -6,30 +6,29 @@
 package home_work_2.loops.task_6;
 
 public class Subtask_1 {
-    public static void main(String[] args) {
 
-        for (int j = 1; j <= 10; j++) {   // цикл строк (от 1 до 10)
+    public static String printMultipliedTable(int startNumber, int endNumber, int columnsInRow) {
+        StringBuilder builder = new StringBuilder();
+        int factor = 1;
 
-            for (int i = 2; i <= 5; i++) {  // Внутренний цикл первых столбцов (от 2 до 5)
-
-                int result = i * j;
-                String output = i + " x " + j + " = " + result + "\t\t";
-                System.out.print(output);
+        while (startNumber <= endNumber) {
+            for (int i = 0; i < columnsInRow && startNumber + i <= endNumber; i++) {
+                int currentNumber = startNumber + i;
+                builder.append(currentNumber).append(" * ").append(factor)
+                        .append(" = ").append(currentNumber * factor);
+                if (i < columnsInRow - 1 && currentNumber + 1 <= endNumber) {
+                    builder.append("\t\t");
+                }
             }
-            System.out.println();// Разделяем блоки умножения
-        }
-        System.out.println(); // Разделяем верхние столбцы от нижних
 
+            builder.append("\n");
 
-        for (int j = 1; j <= 10; j++) {     // цикл строк (от 1 до 10)
-
-            for (int i = 6; i <= 9; i++) {  // Внутренний цикл первых столбцов (от 6 до 9)
-
-                int result = i * j;
-                String output = i + " x " + j + " = " + result + "\t\t";
-                System.out.print(output);
+            if (++factor > 10) {
+                factor = 1;
+                startNumber += columnsInRow;
+                builder.append("\n");
             }
-            System.out.println(); // Разделяем блоки умножения
         }
+        return builder.toString();
     }
 }

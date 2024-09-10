@@ -18,7 +18,7 @@ public class Subtask_2 {
         int evenCount = 0;
 
         for (int i = 0; i < totalNumbers; i++) {
-            int number = random.nextInt(100);
+            int number = random.nextInt();
             if (number % 2 == 0) {
                 evenCount++;
             }

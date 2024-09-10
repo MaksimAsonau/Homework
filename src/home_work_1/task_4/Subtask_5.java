@@ -10,13 +10,10 @@ public class Subtask_5 {
 
         System.out.print("Input number: ");
         int num = in.nextInt();
-
-        if (( 65 <= num && num <= 90) || (97 <= num && num <= 122)) {
-            System.out.println("its letter");
-
-        } else {
-            System.out.println("its symbol");  // если второе число 0
-        }
         in.close();
+        System.out.println(isLetter(num) ? "its letter" : "its other symbol");
+    }
+    public static boolean isLetter (int x) {
+        return ( 65 <= x && x <= 90) || (97 <= x && x <= 122);
     }
 }

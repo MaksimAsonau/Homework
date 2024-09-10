@@ -10,27 +10,26 @@
 package home_work_2.loops.task_2;
 
 public class Subtask_1 {
-    public static void main(String[] args) {
-
-        if (args.length != 1) {     // Проверяем, что передан ровно один аргумент
-            System.out.println("Необходимо ввести одно целое число в качестве аргумента.");
-            return;
+    // Метод для проверки и обработки входных данных
+    public String validateAndProcessInput(String input) {
+        if (input == null || input.isEmpty()) {
+            return "Необходимо ввести одно целое число в качестве аргумента.";
         }
 
-        String input = args[0]; // Получаем введенное значение
+        if (!input.matches("-?\\d+")) {  // Учтем отрицательные числа
+            return "Вы ввели не целое число.";
+        }
 
-        if (!input.matches("\\d+")) { // Проверяем, что введенная строка состоит только из цифр
-            System.out.println("Вы ввели не целое число.");
-            return;
+        if (input.startsWith("-")) {  // Проверяем, если число отрицательное
+            return "Введите положительное число.";
         }
 
         long product = calculateProductOfDigits(input); // Вычисляем произведение цифр числа
-
-        System.out.println(getCalculationSteps(input, product)); // Выводим результат в одной строке
+        return getCalculationSteps(input, product); // Возвращаем строку с ходом вычислений
     }
 
     // Метод для вычисления произведения цифр числа, принимает строку с числом
-    private static long calculateProductOfDigits(String numberStr) {
+    public long calculateProductOfDigits(String numberStr) {
         long product = 1;
         for (int i = 0; i < numberStr.length(); i++) {
             int digit = Character.getNumericValue(numberStr.charAt(i));
@@ -40,7 +39,7 @@ public class Subtask_1 {
     }
 
     // Метод для получения строки с ходом вычислений и результатом, принимает строку с числом и произведение его цифр
-    private static String getCalculationSteps(String numberStr, long product) {
+    public String getCalculationSteps(String numberStr, long product) {
         StringBuilder steps = new StringBuilder();
         for (int i = 0; i < numberStr.length(); i++) {
             if (i > 0) {

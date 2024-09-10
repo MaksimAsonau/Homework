@@ -18,14 +18,14 @@ import java.util.Arrays;
 public class Subtask_1 {
     public static void main(String[] args) {
 
-        int[] defaultArray = ArraysUtils.arrayRandom(5,50);
+        int[] defaultArray = ArraysUtils.arrayRandom(10,50);
 
         System.out.println("Массив для расчетов: " + Arrays.toString(defaultArray));
         System.out.println("\nСумма четных положительных элементов массива: " + sumOfEvenPositiveElements(defaultArray));
         System.out.println("\nМаксимальный из элементов массива с четными индексами: " + maxElementEvenIndex(defaultArray));
         System.out.println("\nЭлементы массива, которые меньше среднего арифметического: " + elementsLessAverage(defaultArray));
         System.out.println("\nНайти два наименьших (минимальных) элемента массива: " + Arrays.toString(twoMinimalElements(defaultArray)));
-        System.out.println("\nСжать массив, удалив элементы, принадлежащие интервалу 7 - 27: " + Arrays.toString(compressArray(defaultArray,7,27)));
+        System.out.println("\nСжать массив, удалив элементы, принадлежащие интервалу -27 : 27: " + Arrays.toString(compressArray(defaultArray,-27,27)));
         System.out.println("\nСумма цифр массива: " + sumDigits(defaultArray));
     }
 
@@ -44,10 +44,10 @@ public class Subtask_1 {
 
     //  2.4.2. Максимальный из элементов массива с четными индексами
     public static int maxElementEvenIndex(int[] array) {
-        int maxElement = 0;
+        int maxElement = array[0];
 
-        for (int i = 0; i < array.length; i++){
-            if (array[i] % 2 == 0 && array[i] > maxElement){
+        for (int i = 0; i < array.length; i += 2) {
+            if (array[i] > maxElement) {
                 maxElement = array[i];
             }
         }
@@ -59,17 +59,20 @@ public class Subtask_1 {
     public static String elementsLessAverage (int[] array) {
         StringBuilder builder = new StringBuilder();
         int sum = 0;
-        double average ;
+        double average;
 
+        // Вычисление суммы элементов
         for (int value : array) {
             sum += value;
         }
-        average = 1.0 * sum / array.length;
 
+        // Вычисление среднего
+        average = (double) sum / array.length;
+
+        // Поиск и добавление элементов, меньших среднего
         for (int value : array) {
             if (value < average) {
-                builder.append(value);
-                builder.append(" ");
+                builder.append(value).append(" ");
             }
         }
 
@@ -90,17 +93,14 @@ public class Subtask_1 {
             }
         }
 
-        int[] minimalElements = {min1, min2};
-        return minimalElements;
+        return new int[]{min1, min2};
     }
 
     //  2.4.5. Сжать массив, удалив элементы, принадлежащие интервалу
     public static int[] compressArray(int[] array, int startInterval, int endInterval) {
 
         int[] newArray = new int[array.length];     // Создаем копию исходного массива
-        for (int i = 0; i < array.length; i++) {
-            newArray[i] = array[i];
-        }
+        System.arraycopy(array, 0, newArray, 0, array.length);
 
         for (int i = 0; i < newArray.length; i++) {  // Проходим по копии массива и заменяем элементы, попадающие в интервал, на 0
             if (newArray[i] >= startInterval && newArray[i] <= endInterval) {
@@ -125,13 +125,14 @@ public class Subtask_1 {
 
     //  2.4.6. Сумма цифр массива
     public static int sumDigits(int[] array) {
+
         int summ = 0;
 
         for (int num : array) {
-            int temp = num; // сохраняем исходное число во временную переменную
+            int temp = Math.abs(num); // Используем абсолютное значение числа
             while (temp > 0) {
-                summ += temp % 10; // добавляем последнюю цифру числа к сумме
-                temp /= 10; // удаляем последнюю цифру числа
+                summ += temp % 10; // Добавляем последнюю цифру числа к сумме
+                temp /= 10; // Удаляем последнюю цифру числа
             }
         }
 

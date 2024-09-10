@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Subtask_3 {
 
     public static void main(String[] args) {
-
         Scanner in = new Scanner(System.in);
 
         System.out.print("Input number1: ");
@@ -13,9 +12,9 @@ public class Subtask_3 {
         System.out.print("Input number2: ");
         int num2 = in.nextInt();
 
-        if (num2 != 0) {   // второе число не 0
-            int quotient = num1 / num2;     // частоное
-            int remainder = num1 % num2;    // остаток
+        if (num2 != 0) {
+            int quotient = calculateQuotient(num1, num2);
+            int remainder = calculateRemainder(num1, num2);
 
             if (remainder == 0) {
                 System.out.println("number1 is divided by number2");
@@ -26,9 +25,18 @@ public class Subtask_3 {
                 System.out.println("remainder: " + remainder);
             }
         } else {
-            System.out.print("Error: division by zero");  // если второе число 0
+            System.out.println("Error: division by zero");
         }
-
         in.close();
+    }
+
+    // Метод для вычисления частного
+    public static int calculateQuotient(int num1, int num2) {
+        return num1 / num2;
+    }
+
+    // Метод для вычисления остатка
+    public static int calculateRemainder(int num1, int num2) {
+        return num1 % num2;
     }
 }

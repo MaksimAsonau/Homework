@@ -1,16 +1,19 @@
 package home_work_1.task_4;
 
+/*
+4.1 Определить нечётное число
+Из двух случайных чисел, одно из которых четное, а другое нечетное, определить и вывести на экран нечетное число.
+ */
+
 import java.util.Random;
 
-public class Subtask1 {
+public class Subtask_1 {
 
     public static void main(String[] args) {
 
         Random random = new Random();
-        int num1 = random.nextInt(100);  // генерируем два числа
+        int num1 = random.nextInt(100);
         int num2 = random.nextInt(100);
-
-        System.out.println(num1 + " " + num2);
 
         if ((!isOdd(num1) && !isOdd(num2)) || (isOdd(num1) && isOdd(num2))) {
             num1 += 1;
